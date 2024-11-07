@@ -1,5 +1,6 @@
-import { LogLevel } from "./LogLevel";
-
+import chalk from "chalk";
+import { levels, LogLevel } from "./LogLevel";
+import { Utils } from "./Utils";
 
 export class Logger {
 
@@ -16,32 +17,41 @@ export class Logger {
         this.level = level;
     }
 
-    public log(level: LogLevel, text: string) {
-        if (level > this.level) {
+    public log(logLevel: LogLevel, text: string, colorName: string) {
+        if (logLevel > this.level) {
             return;
         }
 
-        
+        const now = new Date();
+        const timestamp = Utils.formatDateTimestamp(now);
+
+        const level = levels[logLevel];
+        const message = `[${timestamp}] [${level}] ${this.name} - ${text}`;
+
+        //@ts-ignore
+        const color = chalk[colorName];
+
+        console.log(color(message));
     }
 
     public logDebug(text: string) {
-        this.log(LogLevel.Debug, text);
+        this.log(LogLevel.Debug, text, "cyan");
     }
 
     public logInfo(text: string) {
-        this.log(LogLevel.Info, text);
+        this.log(LogLevel.Info, text, "blue");
     }
 
     public logWarn(text: string) {
-        this.log(LogLevel.Warn, text);
+        this.log(LogLevel.Warn, text, "yellow");
     }
 
     public logError(text: string) {
-        this.log(LogLevel.Error, text);
+        this.log(LogLevel.Error, text, "red");
     }
 
     public logFatal(text: string) {
-        this.log(LogLevel.Fatal, text);
+        this.log(LogLevel.Fatal, text, "magenta");
     }
 }
 
