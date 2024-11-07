@@ -2,7 +2,7 @@
 
 A simple logging library for node.js
 
-![Terminal Image](https://imgur.com/PYikk0n)
+![Terminal Image](https://i.imgur.com/PYikk0n.png)
 
 ## How to use
 
