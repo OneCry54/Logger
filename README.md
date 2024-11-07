@@ -53,3 +53,15 @@ setInterval(() => {
         .saveFileLogs();
 }, 1500);
 ```
+
+Logging Levels
+
+```js
+enum LogLevel {
+    Debug,
+    Info,
+    Warn,
+    Error,
+    Fatal
+}
+```
